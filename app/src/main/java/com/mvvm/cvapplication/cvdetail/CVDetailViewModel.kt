@@ -39,10 +39,9 @@ class CVDetailViewModel @Inject constructor(
 
         // Call repository in coroutine and update the live data variables
         coroutineJob = GlobalScope.launch(Dispatchers.IO) {
-            val response = repo.getCVData(AppConstants.REQ_PARAM)
-            if (response.isSuccessful && response.body() != null) {
-                val cvModel = cvModelMapper.convert(response.body()!!)
-                cvMutableLiveData.postValue(cvModel)
+            val resultHandler = repo.getCVData(AppConstants.REQ_PARAM,cvModelMapper)
+            if (resultHandler.isSuccess && resultHandler.response != null) {
+                cvMutableLiveData.postValue(resultHandler.response)
                 showProgressLiveData.postValue(false)
                 showError.postValue(false)
             } else {

@@ -1,5 +1,6 @@
 package com.mvvm.cvapplication.data
 
+import com.mvvm.cvapplication.cvdetail.model.CVModelMapper
 import com.mvvm.cvapplication.data.remote.APIRetrofitServices
 import com.mvvm.cvapplication.data.remote.model.CVResponse
 import com.mvvm.cvapplication.util.FakeResponses
@@ -42,14 +43,16 @@ class CVRepositoryTest {
             fakeCVJsonResponse200,
             CVResponse::class.java
         )
+        val cvModel = CVModelMapper().convert(cvResponse)
         whenever(apiRetrofitServices.callCVAPIRoutine("")).thenReturn(Response.success(cvResponse))
         //=====================
 
-        val response = cvRepository.getCVData("")
+        val resultHandler = cvRepository.getCVData("",CVModelMapper())
 
-        Assert.assertNotNull(response)
-        assert(response.isSuccessful)
-        assert(response.body() == cvResponse)
+        Assert.assertNotNull(resultHandler)
+        Assert.assertNotNull(resultHandler.response)
+        assert(resultHandler.isSuccess)
+        assert(resultHandler.response== cvModel)
     }
 
     @Test
@@ -62,11 +65,11 @@ class CVRepositoryTest {
             )
         )
 
-        val response = cvRepository.getCVData("")
+        val resultHandler = cvRepository.getCVData("", CVModelMapper())
 
-        Assert.assertNotNull(response)
-        assert(!response.isSuccessful)
-        assert(response.body() == null)
+        Assert.assertNotNull(resultHandler)
+        assert(!resultHandler.isSuccess)
+        assert(resultHandler.response == null)
     }
 
 }

@@ -3,6 +3,7 @@ package com.mvvm.cvapplication.cvdetail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.mvvm.cvapplication.cvdetail.model.CVModelMapper
 import com.mvvm.cvapplication.data.CVRepository
+import com.mvvm.cvapplication.data.ResultHandler
 import com.mvvm.cvapplication.data.remote.APIRetrofitServices
 import com.mvvm.cvapplication.data.remote.model.CVResponse
 import com.mvvm.cvapplication.util.AppConstants
@@ -31,13 +32,13 @@ import retrofit2.Response
 class CVDetailViewModelTest {
 
 
-    //== Mock API retrofit services
-    @Mock
-    lateinit var apiRetrofitServices: APIRetrofitServices
-
     private lateinit var cvDetailViewModel: CVDetailViewModel
 
+    @Mock
     private lateinit var cvRepository: CVRepository
+
+    @Mock
+    lateinit var cvModelMapper: CVModelMapper
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -48,10 +49,6 @@ class CVDetailViewModelTest {
         //Below line makes coroutine to get executed on single thread
         Dispatchers.setMain(newSingleThreadContext("UI thread"))
 
-        //Init Repository with fake services
-        cvRepository = CVRepository(
-            apiRetrofitServices
-        )
     }
 
 
@@ -63,10 +60,13 @@ class CVDetailViewModelTest {
             CVResponse::class.java
         )
         val cvModel = CVModelMapper().convert(cvResponse)
-        whenever(apiRetrofitServices.callCVAPIRoutine(AppConstants.REQ_PARAM)).thenReturn(Response.success(cvResponse))
+        whenever(cvModelMapper.convert(cvResponse)).thenReturn(cvModel)
+        whenever(cvRepository.getCVData(AppConstants.REQ_PARAM,cvModelMapper)).thenReturn(
+            ResultHandler(cvModel,true)
+        )
         //===============
 
-        cvDetailViewModel = CVDetailViewModel(cvRepository, CVModelMapper())
+        cvDetailViewModel = CVDetailViewModel(cvRepository,cvModelMapper)
 
         cvDetailViewModel.loadCVData()
 
@@ -81,10 +81,12 @@ class CVDetailViewModelTest {
 
     @Test
     fun `Test Failure case of API Call`() = runBlockingTest{
-        whenever(apiRetrofitServices.callCVAPIRoutine(AppConstants.REQ_PARAM)).thenReturn(Response.error(404,
-            ResponseBody.create(MediaType.get("application/json"),"")))
+        //Create Fake response and conditions ====
+        whenever(cvRepository.getCVData(AppConstants.REQ_PARAM,cvModelMapper)).thenReturn(
+            ResultHandler(null,false)
+        )
 
-        cvDetailViewModel = CVDetailViewModel(cvRepository, CVModelMapper())
+        cvDetailViewModel = CVDetailViewModel(cvRepository, cvModelMapper)
         cvDetailViewModel.loadCVData()
 
         cvDetailViewModel.showProgressLiveData.customObserver {
