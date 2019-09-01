@@ -26,6 +26,11 @@ class CVDetailViewModel @Inject constructor(
     // Holds coroutine Job reference
     private var coroutineJob: Job? = null
 
+    //Load data on init
+    init {
+        loadCVData()
+    }
+
     /**
      * Call this function to load CV data
      * */
