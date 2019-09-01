@@ -15,13 +15,13 @@ class CVDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     // Handles progress status
-    var showProgressLiveData = MutableLiveData<Boolean>()
+    val showProgressLiveData = MutableLiveData<Boolean>()
 
     // Handles error status
-    var showError = MutableLiveData<Boolean>()
+    val showError = MutableLiveData<Boolean>()
 
     // Holds the data for CVModel
-    var cvMutableLiveData = MutableLiveData<CVModel>()
+    val cvMutableLiveData = MutableLiveData<CVModel>()
 
     // Holds coroutine Job reference
     private var coroutineJob: Job? = null

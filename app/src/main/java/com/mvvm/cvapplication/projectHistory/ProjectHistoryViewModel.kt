@@ -6,6 +6,6 @@ import com.mvvm.cvapplication.cvdetail.model.Projects
 import javax.inject.Inject
 
 class ProjectHistoryViewModel @Inject constructor(): ViewModel() {
-    var projectListLiveData = MutableLiveData<List<Projects>>()
+    val projectListLiveData = MutableLiveData<List<Projects>>()
 
 }
