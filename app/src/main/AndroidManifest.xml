@@ -11,7 +11,7 @@
             android:supportsRtl="true"
             android:name=".CVApplicationClass"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".cvdetail.CVMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

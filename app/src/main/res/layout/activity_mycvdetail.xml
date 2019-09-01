@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vfCVDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cvdetail.CVMainActivity">
+
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/svCVMainActivity"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Personal Info" />
+
+
+            <TextView
+                android:id="@+id/txtCVFullName"
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/txtCVGender"
+
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/txtCVEmail"
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email" />
+
+            <TextView
+                android:id="@+id/txtCVAddress"
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/txtCVPhoneNumber"
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin_top"
+                android:text="Summary" />
+
+            <TextView
+                android:id="@+id/txtCVSummery"
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_margin_top"
+                android:text="Skills" />
+
+            <TextView
+                android:id="@+id/txtCVSkills"
+                style="@style/values"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnCVProjectHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Project History" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_api_error" />
+
+</ViewFlipper>

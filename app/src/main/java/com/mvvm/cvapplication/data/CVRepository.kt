@@ -8,6 +8,8 @@ class CVRepository @Inject constructor(
     private var apiRetrofitServices: APIRetrofitServices
 
 ) {
-
-//TODO add api call
+    /**
+     * @param reqParam Provide the file name to get from server
+     * */
+    suspend fun getCVData(reqParam: String) = apiRetrofitServices.callCVAPIRoutine(reqParam)
 }
