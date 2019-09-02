@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.mvvm.cvapplication.cvdetail.model.CVModelMapper
 import com.mvvm.cvapplication.data.CVRepository
 import com.mvvm.cvapplication.data.ResultHandler
-import com.mvvm.cvapplication.data.remote.APIRetrofitServices
 import com.mvvm.cvapplication.data.remote.model.CVResponse
 import com.mvvm.cvapplication.util.AppConstants
 import com.mvvm.cvapplication.util.FakeResponses
@@ -15,17 +14,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
-import okhttp3.MediaType
-import okhttp3.ResponseBody
 import org.junit.Before
-
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)

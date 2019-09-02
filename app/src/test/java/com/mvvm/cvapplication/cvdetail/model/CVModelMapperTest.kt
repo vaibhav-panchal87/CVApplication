@@ -25,8 +25,6 @@ class CVModelMapperTest {
         val cvMapper = CVModelMapper()
         val cvModel = cvMapper.convert(cvResponse)
 
-        assert(cvModel.firstName.equals(cvResponse.firstName)) { "Unable to map First name" }
-        assert(cvModel.lastName.equals(cvResponse.lastName)){ "Unable to map Last name" }
         assert(cvModel.dob.equals(cvResponse.dob)){ "Unable to map dob" }
         assert(cvModel.email.equals(cvResponse.email)){ "Unable to map Email" }
         assert(cvModel.projects.size.equals(cvResponse.projects.size)){ "Unable to map Project element" }

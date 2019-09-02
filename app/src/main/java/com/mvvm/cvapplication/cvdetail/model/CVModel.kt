@@ -4,17 +4,16 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class CVModel(
-    val firstName: String,
-    val lastName: String,
-    val gender: String,
-    val dob: String,
-    val email: String,
-    val profilePic: String,
-    val address: String,
-    val phoneNumber: String,
-    val summary: String,
-    val skills: String,
-    val projects: List<Projects>
+        val fullName: String,
+        val gender: String,
+        val dob: String,
+        val email: String,
+        val profilePic: String,
+        val address: String,
+        val phoneNumber: String,
+        val summary: String,
+        val skills: String,
+        val projects: List<Projects>
 )
 
 

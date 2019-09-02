@@ -46,15 +46,13 @@ class CVMainActivity : DaggerAppCompatActivity() {
     private fun initView() {
         btnCVProjectHistory.setOnClickListener {
             viewModel.cvMutableLiveData.value?.let {
-                viewModel.cvMutableLiveData.value?.let {
-                    val i = Intent()
-                    i.setClass(this, ProjectHistoryActivity::class.java)
-                    i.putParcelableArrayListExtra(
+                val i = Intent()
+                i.setClass(this, ProjectHistoryActivity::class.java)
+                i.putParcelableArrayListExtra(
                         AppConstants.PRAM_DATA,
                         it.projects as ArrayList<out Parcelable>
-                    )
-                    startActivity(i)
-                }
+                )
+                startActivity(i)
             }
         }
 
@@ -68,14 +66,14 @@ class CVMainActivity : DaggerAppCompatActivity() {
      * */
     private fun initViewModel() {
         viewModel.cvMutableLiveData.observe(this,
-            Observer<CVModel> { observer ->
-                viewModel.showProgressLiveData.value = false
-                observer?.let {
-                    vfCVDetail.displayedChild = SHOW_DATA
-                    loadDataOnUI(it)
-                }
+                Observer<CVModel> { observer ->
+                    viewModel.showProgressLiveData.value = false
+                    observer?.let {
+                        vfCVDetail.displayedChild = SHOW_DATA
+                        loadDataOnUI(it)
+                    }
 
-            })
+                })
 
         viewModel.showProgressLiveData.observe(this, Observer {
             if (it)
@@ -95,7 +93,7 @@ class CVMainActivity : DaggerAppCompatActivity() {
      * */
     private fun loadDataOnUI(cvModel: CVModel) {
 
-        txtCVFullName.text = "${cvModel.firstName} ${cvModel.lastName}"
+        txtCVFullName.text = cvModel.fullName
         txtCVAddress.text = cvModel.address
         txtCVEmail.text = cvModel.email
         txtCVGender.text = cvModel.gender

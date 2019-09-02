@@ -36,8 +36,12 @@ class ProjectHistoryActivity : DaggerAppCompatActivity() {
         initView()
 
         intent?.let {
-            viewModel.projectListLiveData.value =
-                it.getParcelableArrayListExtra<Projects>(AppConstants.PRAM_DATA)
+            if(it.hasExtra(AppConstants.PRAM_DATA)) {
+                viewModel.projectListLiveData.value =
+                    it.getParcelableArrayListExtra<Projects>(AppConstants.PRAM_DATA)
+            }else{
+                vfProjectHistory.displayedChild = DISPLAY_ERROR
+            }
         }
 
         initViewModel()

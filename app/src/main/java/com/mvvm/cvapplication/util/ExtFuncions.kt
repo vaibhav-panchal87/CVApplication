@@ -1,16 +1,17 @@
 package com.mvvm.cvapplication.util
 
 import java.text.SimpleDateFormat
+import java.util.*
 
 /**
- * Extention funtion to convert Date format
+ * Extension function to convert Date format
  * */
-fun String.convertYYYYMMDD_TO_DDMMMYYYY(): String {
+fun String.convertToDDMMMYYYY(): String {
     return try {
-        val fromSDF = SimpleDateFormat("yyyy-MM-dd")
-        val toSDF = SimpleDateFormat("dd-MMM-yyyy")
+        val fromSDF = SimpleDateFormat("yyyy-MM-dd",Locale.getDefault())
+        val toSDF = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
 
-        toSDF.format(fromSDF.parse(this))
+        toSDF.format(fromSDF.parse(this) as Date)
     } catch (ex: Exception) {
         this
     }

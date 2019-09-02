@@ -28,29 +28,28 @@ class CVModelMapper @Inject constructor() : BaseMapper<CVResponse, CVModel> {
 
         input.projects.forEach {
             projects.add(
-                Projects(
-                    it.name,
-                    it.start,
-                    it.end,
-                    it.type,
-                    it.role,
-                    it.details,
-                    it.environment
-                )
+                    Projects(
+                            it.name,
+                            it.start,
+                            it.end,
+                            it.type,
+                            it.role,
+                            it.details,
+                            it.environment
+                    )
             )
         }
         return CVModel(
-            input.firstName,
-            input.lastName,
-            input.gender,
-            input.dob,
-            input.email,
-            input.profilePic,
-            address,
-            input.phoneNumber,
-            input.summary,
-            skills,
-            projects
+                "${input.firstName} ${input.lastName}",
+                input.gender,
+                input.dob,
+                input.email,
+                input.profilePic,
+                address,
+                input.phoneNumber,
+                input.summary,
+                skills,
+                projects
         )
     }
 

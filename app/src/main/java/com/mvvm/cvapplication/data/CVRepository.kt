@@ -3,12 +3,12 @@ package com.mvvm.cvapplication.data
 import com.mvvm.cvapplication.cvdetail.model.CVModel
 import com.mvvm.cvapplication.cvdetail.model.CVModelMapper
 import com.mvvm.cvapplication.data.remote.APIRetrofitServices
+import com.mvvm.cvapplication.data.remote.model.CVResponse
 import javax.inject.Inject
 
 
 class CVRepository @Inject constructor(
     private var apiRetrofitServices: APIRetrofitServices
-
 ) {
     /**
      * @param reqParam Provide the file name to get from server
@@ -17,7 +17,7 @@ class CVRepository @Inject constructor(
         return try {
             val response = apiRetrofitServices.callCVAPIRoutine(reqParam)
             if (response.isSuccessful && response.body() != null) {
-                val cvModel = mapper.convert(response.body()!!)
+                val cvModel = mapper.convert(response.body() as CVResponse)
                 ResultHandler(cvModel, true)
             } else {
                 ResultHandler(null, false)

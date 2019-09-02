@@ -5,14 +5,22 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="@dimen/warning_msg_size"
+        android:layout_height="@dimen/warning_msg_size"
+        android:src="@drawable/ic_warning_24dp" />
+
     <TextView
+        style="@style/warning_msg_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/layout_api_error_msg" />
 
     <Button
         android:id="@+id/btnLayoutError"
+        style="@style/retry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/error_btn_margin_top"
         android:text="@string/try_again" />
 </LinearLayout>

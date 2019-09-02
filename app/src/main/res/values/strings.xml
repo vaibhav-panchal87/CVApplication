@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">CurriculumVitaeApp</string>
-    <string name="try_again">Try Again?</string>
-    <string name="layout_api_error_msg">Unable to fetch CV</string>
+    <string name="try_again">Retry</string>
+    <string name="layout_api_error_msg">Unable to fetch CV.</string>
     <string name="project_history_title">Project History</string>
     <string name="history_error">No project history available for the user</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="summary">Summary</string>
+    <string name="skills">Skills</string>
+    <string name="project_history">Project History</string>
 </resources>
